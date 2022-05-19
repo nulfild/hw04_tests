@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from ..models import Post, User
@@ -23,8 +23,7 @@ class PostCreateFormTests(TestCase):
         posts_count = Post.objects.count()
 
         form_data = {
-            'text': 'Тестируем опять',
-            'author': self.user
+            'text': 'Тестируем опять'
         }
 
         self.authorized_client.post(
@@ -34,6 +33,12 @@ class PostCreateFormTests(TestCase):
         )
 
         self.assertEqual(Post.objects.count(), posts_count + 1)
+        self.assertTrue(
+            Post.objects.filter(
+                text='Тестируем опять',
+                author=self.user
+            ).exists()
+        ) 
 
     def test_editing_post(self):
         """Пост имзенется в БД при его редактировании."""
