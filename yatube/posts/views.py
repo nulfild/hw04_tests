@@ -60,7 +60,6 @@ def post_detail(request, post_id):
 def post_create(request):
     form = PostForm(
         request.POST or None,
-        files=request.FILES or None
     )
 
     if not form.is_valid():
@@ -81,7 +80,6 @@ def post_edit(request, post_id):
 
     form = PostForm(
         request.POST or None,
-        files=request.FILES or None,
         instance=post
     )
     context = {
