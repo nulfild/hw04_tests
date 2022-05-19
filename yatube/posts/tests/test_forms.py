@@ -38,7 +38,7 @@ class PostCreateFormTests(TestCase):
                 text='Тестируем опять',
                 author=self.user
             ).exists()
-        ) 
+        )
 
     def test_editing_post(self):
         """Пост имзенется в БД при его редактировании."""
